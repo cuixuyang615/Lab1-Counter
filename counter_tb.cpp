@@ -5,6 +5,7 @@
 int main(int argc, char **argv, char **env)
 {
     int i;
+    int j=0;
     int clk;
 
     Verilated::commandArgs(argc, argv);
@@ -29,8 +30,30 @@ int main(int argc, char **argv, char **env)
             top->eval();
         }
 
-        top->rst = (i<2) | (i==15);
-        top->en  = (i>4);
+        // // original code:
+        // top->rst = (i<2) | (i==15);
+        // top->en  = (i>4);
+
+        // challenge code:
+        top->rst = (i<2);
+
+        if(top->count == 0x9)
+        {
+            if(j<2)
+            {
+                top->en = 0;
+                j++;
+            }
+            else
+            {
+                top->en = 1;
+            }
+        }
+        else
+        {
+            top->en = 1;
+            j=0;
+        }
 
         if(Verilated::gotFinish())
             exit(0);

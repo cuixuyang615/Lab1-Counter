@@ -14,8 +14,7 @@ So rst will be set to 1 at 15th clock cycle, and so as in the first 2 clock cycl
 
 modify the testbench code of en and rst signal to:
 
-'
-//  challenge code:
+'//  challenge code:
     top->rst = (i<2);
 
     if(top->count == 0x9)
@@ -34,8 +33,7 @@ modify the testbench code of en and rst signal to:
     {
         top->en = 1;
         j=0;
-    }
-'
+    }'
 
 This make rst only set to 1 at first 2 cycle and make en set to 0 for 2 cycles when count reaches 0x9.
 Because at the next rising edge the 
